@@ -1,4 +1,4 @@
-# Coursera - Getting and Cleaning Data - Fina Project
+# Coursera - Getting and Cleaning Data - Final Project
 
 Download data from [here](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) and unzip to working directory.  
 

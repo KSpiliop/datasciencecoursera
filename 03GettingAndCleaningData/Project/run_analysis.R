@@ -96,29 +96,6 @@ summary(dfFinal$Y)
 # 4 SITTING
 # 5 STANDING
 # 6 LAYING
-
-dfFinal$Y_Label <- 
-  if(dfFinal$Y == '1'){
-    dfFinal$Y_Label <- "Walking"
-  } else {
-    if(dfFinal$Y == '2'){
-      dfFinal$Y_Label <- "Walking_Upstairs"
-    } else {
-      if(dfFinal$Y == '3'){
-        dfFinal$Y_Label <- "Walking_Downstairs"
-      } else {
-        if(dfFinal$Y == '4'){
-          dfFinal$Y_Label <- "Sitting"
-        } else {
-          if(dfFinal$Y == '5'){
-            dfFinal$Y_Label <- "Standing"
-          } else{
-            if(dfFinal$Y == '6'{
-              dfFinal$Y_Label <- "Laying"
-            })
-          }
-        }
-
         
 # output file for upload
 write.table(dfFinal, "output.txt", sep="\t", row.name = FALSE)

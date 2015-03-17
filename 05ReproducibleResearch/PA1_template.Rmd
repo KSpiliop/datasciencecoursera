@@ -32,6 +32,7 @@ Histogram of sum of number of steps, based on data frame created above
 ```{r}
 ggplot(df2_sum_steps_by_date, aes(x=steps)) + geom_histogram(binwidth = 1000, colour="black", fill="white")
 ```
+![Plot1](/graphics/Plot1.png)
 
 Find mean and median of steps taken per day:
 Mean = 10770, Median = 10760

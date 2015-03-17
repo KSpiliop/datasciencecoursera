@@ -16,9 +16,10 @@ dir()
 ```
 
 ```
-## [1] "activity.csv"              "graphics"                 
-## [3] "PA1_template.html"         "PA1_template.Rmd"         
-## [5] "RCode 20150315.R"          "repdata-data-activity.zip"
+## [1] "activity.csv"              "figure"                   
+## [3] "graphics"                  "PA1_template.html"        
+## [5] "PA1_template.Rmd"          "RCode 20150315.R"         
+## [7] "repdata-data-activity.zip"
 ```
 
 ```r
@@ -76,6 +77,7 @@ ggplot(df2_sum_steps_by_date, aes(x=steps)) + geom_histogram(binwidth = 1000, co
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+![Plot1](/graphics/Plot1.png)
 
 Find mean and median of steps taken per day:
 Mean = 10770, Median = 10760

@@ -77,7 +77,7 @@ ggplot(df2_sum_steps_by_date, aes(x=steps)) + geom_histogram(binwidth = 1000, co
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
-![Plot1](https://github.com/sunwsusan/datasciencecoursera/tree/master/05ReproducibleResearch/graphics/Plot1.png)
+![Plot1](https://raw.githubusercontent.com/sunwsusan/datasciencecoursera/master/05ReproducibleResearch/graphics/Plot1.png)
 
 Find mean and median of steps taken per day:
 Mean = 10770, Median = 10760

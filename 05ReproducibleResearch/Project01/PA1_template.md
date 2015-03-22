@@ -76,7 +76,7 @@ Histogram of sum of number of steps, based on data frame created above
 ggplot(df2_sum_steps_by_date, aes(x=steps)) + geom_histogram(binwidth = 1000, colour="black", fill="white")
 ```
 
-![Plot1](https://raw.githubusercontent.com/sunwsusan/datasciencecoursera/master/05ReproducibleResearch/graphics/Plot1.png) 
+![Plot1](https://raw.githubusercontent.com/sunwsusan/datasciencecoursera/master/05ReproducibleResearch/Project01/graphics/Plot1.png) 
 
 
 Find mean and median of steps taken per day:
@@ -118,7 +118,7 @@ Plot average number of steps taken as a time series
 ggplot(df3_avg_steps_by_interval, aes(x = interval, y = steps)) + geom_line()
 ```
 
-![Plot2](https://raw.githubusercontent.com/sunwsusan/datasciencecoursera/master/05ReproducibleResearch/graphics/Plot2.png)
+![Plot2](https://raw.githubusercontent.com/sunwsusan/datasciencecoursera/master/05ReproducibleResearch/Project01/graphics/Plot2.png)
 
 Find 5-min interval with max number of steps
 
@@ -201,7 +201,7 @@ Make a histogram of the total number of steps taken each day
 ggplot(df5_sum_steps, aes(x=steps)) + geom_histogram(binwidth = 1000, colour="black", fill="white")
 ```
 
-![Plot3](https://raw.githubusercontent.com/sunwsusan/datasciencecoursera/master/05ReproducibleResearch/graphics/Plot3.png)
+![Plot3](https://raw.githubusercontent.com/sunwsusan/datasciencecoursera/master/05ReproducibleResearch/Project01/graphics/Plot3.png)
 
 Calculate and report the mean and median total number of steps taken per day. 
 
@@ -275,5 +275,5 @@ str(df7_avg_steps_by_interval)
 ggplot(df7_avg_steps_by_interval, aes(x = interval, y = steps)) + geom_line() + facet_grid(WeekdayOrWeekend ~.)
 ```
 
-![Plot4](https://raw.githubusercontent.com/sunwsusan/datasciencecoursera/master/05ReproducibleResearch/graphics/Plot4.png)
+![Plot4](https://raw.githubusercontent.com/sunwsusan/datasciencecoursera/master/05ReproducibleResearch/Project01/graphics/Plot4.png)
 

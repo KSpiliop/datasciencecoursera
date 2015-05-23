@@ -1,0 +1,84 @@
+## Purpose
+
+Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify **how much** of a particular activity they do, but they rarely quantify **how well** they do it. In this project, your goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. More information is available from the website here: `http://groupware.les.inf.puc-rio.br/har`.
+
+
+## Analysis
+
+1. Split training data into 25/75, proportional to classe.  Leave out-of-sample dataset alone.
+```{r}
+library(caret)
+
+dfin_1_raw  <- read.csv("pml-training.csv", na.strings=c("NA","", "#DIV/0!"))
+dfot_1_raw  <- read.csv("pml-testing.csv",  na.strings=c("NA","", "#DIV/0!"))
+
+set.seed(12345)
+splitIndex <- createDataPartition(dfin_1_raw$classe, p = 0.75, list = FALSE, times = 1) 
+dfit_2  <- dfin_1_raw[ splitIndex,]
+dfiv_2  <- dfin_1_raw[-splitIndex,]
+dfot_2  <- dfot_1_raw
+```
+
+
+2. Remove variables that have no value in the out-of-sample dataset.  Apply this to all three data sets.  The reason for this step is that if the out-of-sample dataset has no value for a particular variable, then it's clear indication that the variable will not be used in the scoring process.
+```{r}
+nzv <- nearZeroVar(dfot_2)
+
+dfit_3_nzv <- dfit_2[, -nzv]
+dfiv_3_nzv <- dfiv_2[, -nzv]
+dfot_3_nzv <- dfot_2[, -nzv]
+```
+
+
+3.  Remove factor and time variables.
+```{r}
+colname_remove <- c(  "X"
+                      , "user_name"
+                      , "raw_timestamp_part_1"
+                      , "raw_timestamp_part_2"
+                      , "cvtd_timestamp")
+
+dfit_4_remove  <- dfit_3_nzv[!names(dfit_3_nzv) %in% colname_remove]
+dfiv_4_remove  <- dfiv_3_nzv[!names(dfiv_3_nzv) %in% colname_remove]
+dfot_4_remove  <- dfot_3_nzv[!names(dfot_3_nzv) %in% colname_remove]
+```
+
+
+4. Attempt to impute missing data and remove near zero variance variables - but nothing to impute or remove.
+```{r}
+impute.zero   <- function(x) replace(x, is.na(x), 0)
+impute.median <- function(x) replace(x, is.na(x), median(x, na.rm = TRUE))
+# nothing to impute
+
+nzv <- nearZeroVar(dfit_4_remove, saveMetrics = TRUE)
+# nothing to remove
+```
+
+
+5. Create a repeated 5-fold cross validation control group.
+```{r}
+objControl <- trainControl(  method="repeatedcv"
+                             , number = 5
+                             , repeats = 5
+                             , verboseIter = TRUE
+                             , returnResamp = "all"
+                             , classProbs = TRUE
+                             , savePredictions = TRUE)
+```
+
+
+6. Run gradient boosted tree model.  Test outcome against testing data.  Visualize results.
+```{r, echo = FALSE}
+# load model outputs saved locally
+setwd("/Users/SusanMacAir/Desktop/Coursera/08_PracticalMachineLearning/courserapracticalmachinelearning")
+load(file = "mod4_cm.rda")
+load(file = "mod4_imp.rda")
+load(file = "mod4_plot.rda")
+mod4_cm
+mod4_imp
+plot(mod4_plot)
+```
+
+
+## Conclusion
+Model is built using gradient boosted trees with a repeated cross validation of 5-folds.  The out of sample error should be around 99% accuracy (95% CI of (0.9908, 0.9955)) since this is the accuracy reflected in the testing data set validation, and the Kappa is approximately 0.99.

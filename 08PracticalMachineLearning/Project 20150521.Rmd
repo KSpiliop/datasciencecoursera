@@ -69,6 +69,14 @@ objControl <- trainControl(  method="repeatedcv"
 
 6. Run gradient boosted tree model.  Test outcome against testing data.  Visualize results.
 ```{r, echo = FALSE}
+
+## Run model and save output
+# set.seed(12345)
+# mod4_gbm    <- train(classe ~ ., data = dfiv_4_remove, preProcess = c("center", "scale"), method = "gbm", verbose = TRUE)
+# mod4_pred   <- predict(mod4_gbm, newdata = dfiv_4_remove)
+# confusionMatrix(mod4_pred, dfiv_4_remove$classe)
+# save(mod4_gbm, file = "mod4_gbm.rda")
+
 # load model outputs saved locally
 setwd("/Users/SusanMacAir/Desktop/Coursera/08_PracticalMachineLearning/courserapracticalmachinelearning")
 load(file = "mod4_cm.rda")
